@@ -16,20 +16,21 @@ public class Point : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
-        if(tag == "SmallStarTag") {
+    void Update(GameObject objectName){
+        if(objectName.tag == "SmallStarTag") {
             this.point += 20;
-            this.pointText.GetComponent<Text>().text = (string)point;
-        }else if(tag == "LargeStarTag") {
+            this.pointText.GetComponent<Text>().text = point.ToString();
+            Debug.Log(point);
+        }else if(objectName.tag == "LargeStarTag") {
             this.point += 10;
-            this.pointText.GetComponent<Text>().text = (string)point;
-        }else if(tag == "SmallCloudTag" || tag == "LargeCloudTag") {
+            this.pointText.GetComponent<Text>().text = point.ToString();
+        }else if(objectName.tag == "SmallCloudTag" || objectName.tag == "LargeCloudTag") {
             this.point += 5;
-            this.pointText.GetComponent<Text>().text = (string)point;
+            this.pointText.GetComponent<Text>().text = point.ToString();
         }
     }
 
     void OnCollisionEnter(Collision other){
-        Update();
+        Update(other);
     }
 }
