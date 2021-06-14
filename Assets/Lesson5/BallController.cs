@@ -24,19 +24,22 @@ public class BallController : MonoBehaviour
     {
         if(this.transform.position.z < this.visiblePosZ){
             this.gameoverText.GetComponent<Text> ().text = "Game Over";
+            Debug.Log("test");
         }
     }
     private void OnCollisionEnter(Collision collision){
-        if(collision.gameObject.tag == "SmallCloudTag" || collision.gameObject.tag == "LargeCloudTag"){
+        if(collision.gameObject.tag == "SmallCloudTag"){
             this.point += 10;
             this.pointText.GetComponent<Text>().text = point.ToString();
-        } else if(collision.gameObject.tag == "SmallStarTag") {
+        }　else if(collision.gameObject.tag == "SmallStarTag") {
             this.point += 20;
             this.pointText.GetComponent<Text>().text = point.ToString();
         } else if(collision.gameObject.tag == "LargeStarTag"){
             this.point += 30;
             this.pointText.GetComponent<Text>().text = point.ToString();
+        } else if(collision.gameObject.tag == "LargeCloudTag") {
+            this.point += 10;
+            this.pointText.GetComponent<Text>().text = point.ToString();
         }
-        Debug.Log(point);
     }
 }
